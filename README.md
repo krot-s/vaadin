@@ -1,4 +1,4 @@
-vaadin
+vaadin proof of concept
 ======
 
-vaadin
+Vaadin framework proof of concept
