@@ -8,8 +8,9 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 
-@SuppressWarnings("serial")
 public class MainMenu extends CustomComponent {
+	private static final long serialVersionUID = 1L;
+
 	private final EventBus eventBus;
 	
 	@Inject
@@ -44,7 +45,10 @@ public class MainMenu extends CustomComponent {
 		return menuBar;
 	}
 	
+	@SuppressWarnings("unused")
 	private class MenuCommand<T> implements Command {
+		private static final long serialVersionUID = 1L;
+
 		private T event; 
 		private MenuCommand(T event) {
 			this.event = event;

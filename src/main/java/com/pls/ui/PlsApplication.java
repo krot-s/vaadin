@@ -28,6 +28,7 @@ public class PlsApplication extends com.vaadin.Application{
 	public void init() {
 		initMainWindow();		
 		eventBus.post(new CarriersViewShowEvent());
+		System.out.println("New application created");
 	}
 	
 	private void initMainWindow(){

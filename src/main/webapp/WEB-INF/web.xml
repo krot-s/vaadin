@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
-	
+
 	<filter>
 		<filter-name>guiceFilter</filter-name>
 		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
@@ -13,8 +13,20 @@
 		<filter-name>guiceFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- for jmeter tests only. remove in production -->
+	<context-param>
+		<param-name>disable-xsrf-protection</param-name>
+   		<param-value>true</param-value>
+	</context-param>
 
 	<listener>
-		<listener-class>com.pls.ui.ApplicationConfig</listener-class>
+		<listener-class>com.pls.ui.ApplicationConfig</listener-class>		
 	</listener>
+	
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+	
+	
 </web-app>
