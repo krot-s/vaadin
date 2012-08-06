@@ -2,6 +2,7 @@ package com.pls.ui.components;
 
 import java.util.HashMap;
 
+import com.pls.domain.CarrierStatus;
 import com.vaadin.data.Container;
 import com.vaadin.data.util.BeanContainer;
 import com.vaadin.event.FieldEvents.BlurEvent;
@@ -12,6 +13,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DefaultFieldFactory;
 import com.vaadin.ui.Field;
+import com.vaadin.ui.Select;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -90,6 +92,15 @@ public class CustomTable extends CustomComponent {
 					return tf;
 				}
 
+				if(typeId.equals(CarrierStatus.class.toString())){
+					 Select select = new Select();
+					 for(CarrierStatus cs: CarrierStatus.values()){
+						 select.addItem(cs.getHumanReadble());
+					 }
+					 System.out.println(container.getItem(itemId));
+					 select.setValue(propertyId);
+					 return select; 
+				}
 				return super.createField(container, itemId, propertyId,
 						uiContext);
 			}
