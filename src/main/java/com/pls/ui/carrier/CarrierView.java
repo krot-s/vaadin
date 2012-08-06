@@ -1,36 +1,22 @@
 package com.pls.ui.carrier;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.pls.domain.Carrier;
-import com.pls.domain.CarrierStatus;
 import com.pls.service.CarrierService;
 import com.pls.ui.components.CustomTable;
 import com.pls.ui.menu.HeaderStrip;
 import com.vaadin.Application;
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanContainer;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.Field;
-import com.vaadin.ui.FieldFactory;
-import com.vaadin.ui.Form;
-import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.themes.Reindeer;
-import com.vaadin.ui.Window;
+import com.vaadin.ui.Form;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 public class CarrierView implements Serializable {
 	private static final long serialVersionUID = -7921194304196825064L;
@@ -55,13 +41,9 @@ public class CarrierView implements Serializable {
 	}
 	
 	private void initLayout(){
-		Panel  panel = new Panel();
-		Panel  inpanel = new Panel();
-		Panel  addpanel = new Panel("Create new Carrier");
-		inpanel.setWidth("1200px");
-		addpanel.setWidth("1151px");
-		
 		VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(true);
+		layout.setSpacing(true);
 		layout.addComponent(hearder);
 		layout.setDebugId("CarrierView.initLayout.layout");
 
@@ -69,44 +51,32 @@ public class CarrierView implements Serializable {
 		beans.setBeanIdProperty("id");
 		beans.addAll(service.getAllCarriers());
 		
-		final CustomTable table = new CustomTable("Carrier", beans);
+		final CustomTable table = new CustomTable("Carries table", beans);
 		table.setDebugId("CarrierView.initLayout.table");
-		table.setHeight("500px");
-		final Carrier carrier = new Carrier();
-		
-		carrier.setId((long) 0);
-		carrier.setContactName("");
-		carrier.setName("");
-		carrier.setStatus(CarrierStatus.ACTIVE);
-		carrier.setTaxId("");
-		carrier.setValidUntil(Calendar.getInstance().getTime());
-		carrier.setMcNumber((long) 0);
-		carrier.setScac("");
-	
-		final Form form = new Form();
 
-		BeanItem<Carrier> bItem = new BeanItem<Carrier>(carrier);
-		form.setItemDataSource(bItem);
+		final Carrier carrier = new Carrier();
+		final Form form = new Form();
+		form.setCaption("Create new carrier");
 		
-		Button addBean = new Button("Add");
-		addBean.addListener(new ClickListener() {	
+		final BeanItem<Carrier> formDatasource = new BeanItem<Carrier>(carrier);
+		form.setItemDataSource(formDatasource);
+		
+		Button addButton = new Button("Add");
+		addButton.addListener(new Button.ClickListener() {	
 			@Override
 			public void buttonClick(ClickEvent event) {
 				service.addCarrier(carrier);
-				beans.addAll(service.getAllCarriers());
-
+				beans.addAll(service.getAllCarriers());				
 			}
 		});
-		
-		inpanel.addComponent(table);
-		addpanel.addComponent(form);
-		addpanel.addComponent(addBean);
-		inpanel.addComponent(addpanel);
-		panel.addComponent(inpanel);
-		layout.addComponent(panel);
-		//layout.addComponent(addBean);
-		
+
+		HorizontalLayout buttons = new HorizontalLayout();
+		buttons.addComponent(addButton);
+		form.getFooter().addComponent(buttons);
+
+		layout.addComponent(table);
+		layout.addComponent(form);
+
 		application.getMainWindow().setContent(layout);
-		//application.getMainWindow().setContent(panel);
 	}
 }

@@ -30,7 +30,7 @@ public class HeaderStrip extends CustomComponent {
 			
 			@Override
 			public void buttonClick(ClickEvent event) {
-				application.close();				
+				application.close();	
 			}
 		}));
 		
