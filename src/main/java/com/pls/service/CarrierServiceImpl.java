@@ -1,6 +1,7 @@
 package com.pls.service;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -44,5 +45,9 @@ public class CarrierServiceImpl implements CarrierService {
 		carrier.setMcNumber(110011l);
 		carrier.setScac("KANN");
 		return carrier;
+	}
+
+	public void addCarrier(Carrier carrier){
+		carriers.add(carrier);
 	}
 }
