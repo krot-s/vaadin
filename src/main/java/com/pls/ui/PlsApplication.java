@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import com.pls.ui.carrier.CarrierView;
 import com.pls.ui.carrier.CarriersViewShowEvent;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Window.CloseEvent;
 
 
 public class PlsApplication extends com.vaadin.Application{
@@ -32,6 +33,15 @@ public class PlsApplication extends com.vaadin.Application{
 	}
 	
 	private void initMainWindow(){
-		setMainWindow(new Window("Vaadin Application"));
+		setMainWindow(new Window("Vaadin Application"));		
+		getMainWindow().addListener(new Window.CloseListener() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void windowClose(CloseEvent e) {
+				close();
+			}
+		});
+		setLogoutURL("/");
 	}
 }

@@ -38,12 +38,14 @@ public class CarrierView implements Serializable {
 	private void initLayout(){
 		VerticalLayout layout = new VerticalLayout();
 		layout.addComponent(hearder);
+		layout.setDebugId("CarrierView.initLayout.layout");
 
 		BeanContainer<Long, Carrier> beans = new BeanContainer<Long, Carrier>(Carrier.class);
 		beans.setBeanIdProperty("id");
 		beans.addAll(service.getAllCarriers());
 		
 		CustomTable table = new CustomTable("Carrier", beans);
+		table.setDebugId("CarrierView.initLayout.table");
 		layout.addComponent(table);
 		
 		application.getMainWindow().setContent(layout);
