@@ -5,9 +5,12 @@ import java.io.Serializable;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import com.pls.domain.Carrier;
 import com.pls.service.CarrierService;
+import com.pls.ui.components.CustomTable;
 import com.pls.ui.menu.HeaderStrip;
 import com.vaadin.Application;
+import com.vaadin.data.util.BeanContainer;
 import com.vaadin.ui.VerticalLayout;
 
 public class CarrierView implements Serializable {
@@ -35,6 +38,13 @@ public class CarrierView implements Serializable {
 	private void initLayout(){
 		VerticalLayout layout = new VerticalLayout();
 		layout.addComponent(hearder);
+
+		BeanContainer<Long, Carrier> beans = new BeanContainer<Long, Carrier>(Carrier.class);
+		beans.setBeanIdProperty("id");
+		beans.addAll(service.getAllCarriers());
+		
+		CustomTable table = new CustomTable("Carrier", beans);
+		layout.addComponent(table);
 		
 		application.getMainWindow().setContent(layout);
 	}
