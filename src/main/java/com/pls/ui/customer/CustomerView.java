@@ -1,12 +1,12 @@
-package com.pls.ui.carrier;
+package com.pls.ui.customer;
 
 import java.io.Serializable;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import com.pls.domain.Carrier;
-import com.pls.service.CarrierService;
+import com.pls.domain.Customer;
+import com.pls.service.CustomerService;
 import com.pls.ui.components.CustomTableFieldFactory;
 import com.pls.ui.menu.HeaderStrip;
 import com.vaadin.Application;
@@ -19,25 +19,25 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
-public class CarrierView implements Serializable {
+public class CustomerView implements Serializable {
 	private static final long serialVersionUID = -7921194304196825064L;
 
 	@Inject
 	private Application application;
 	
 	@Inject
-	private CarrierService service;
+	private CustomerService service;
 	
 	@Inject
 	private HeaderStrip hearder;
 
 	@Inject
-	public CarrierView(EventBus eventBus) {
+	public CustomerView(EventBus eventBus) {
 		eventBus.register(this);
 	}
 	
 	@Subscribe
-	public void showView(CarriersViewShowEvent event){
+	public void showView(CustomerViewShowEvent event){
 		initLayout();
 	}
 	
@@ -47,34 +47,34 @@ public class CarrierView implements Serializable {
 		layout.setMargin(true);
 		layout.setSpacing(true);
 		layout.addComponent(hearder);
-		layout.setDebugId("CarrierView.initLayout.layout");
+		layout.setDebugId("CustomerView.initLayout.layout");
 
-		final BeanContainer<Long, Carrier> beans = new BeanContainer<Long, Carrier>(Carrier.class);
+		final BeanContainer<Long, Customer> beans = new BeanContainer<Long, Customer>(Customer.class);
 		beans.setBeanIdProperty("id");
-		beans.addAll(service.getAllCarriers());
+		beans.addAll(service.getAllCustomers());
 		
 		final Table table = new Table();		
 		table.setWidth("100%");
-		table.setDebugId("CarrierView.initLayout.table");
+		table.setDebugId("CustomerView.initLayout.table");
 		table.setColumnReorderingAllowed(true);
 		table.setEditable(true);
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
 		table.setTableFieldFactory(new CustomTableFieldFactory());
 
-		final Carrier carrier = new Carrier();
+		final Customer carrier = new Customer();
 		final Form form = new Form();
-		form.setCaption("Create new carrier");
+		form.setCaption("Create new customer");
 		
-		final BeanItem<Carrier> formDatasource = new BeanItem<Carrier>(carrier);
+		final BeanItem<Customer> formDatasource = new BeanItem<Customer>(carrier);
 		form.setItemDataSource(formDatasource);
 		
 		Button addButton = new Button("Add");
 		addButton.addListener(new Button.ClickListener() {	
 			@Override
 			public void buttonClick(ClickEvent event) {
-				service.addCarrier(carrier);
-				beans.addAll(service.getAllCarriers());				
+//				service.addCustomer(carrier);
+				beans.addAll(service.getAllCustomers());				
 			}
 		});
 

@@ -4,6 +4,7 @@ import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.pls.ui.carrier.CarrierView;
 import com.pls.ui.carrier.CarriersViewShowEvent;
+import com.pls.ui.customer.CustomerView;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
 
@@ -21,9 +22,13 @@ public class PlsApplication extends com.vaadin.Application{
 	 * nnecessary. 
 	 * Do not remove these injections, otherwise application will stop working  
 	 */
+	@SuppressWarnings("unused")
 	@Inject
 	private CarrierView carrierView;
 
+	@SuppressWarnings("unused")
+	@Inject
+	private CustomerView customerView;
 	
 	@Override
 	public void init() {
@@ -33,6 +38,7 @@ public class PlsApplication extends com.vaadin.Application{
 	}
 	
 	private void initMainWindow(){
+		setTheme("runo");
 		setMainWindow(new Window("Vaadin Application"));		
 		getMainWindow().addListener(new Window.CloseListener() {
 			private static final long serialVersionUID = 1L;

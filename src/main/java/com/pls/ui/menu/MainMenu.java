@@ -2,6 +2,8 @@ package com.pls.ui.menu;
 
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
+import com.pls.ui.carrier.CarriersViewShowEvent;
+import com.pls.ui.customer.CustomerViewShowEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.MenuBar;
@@ -30,12 +32,16 @@ public class MainMenu extends CustomComponent {
 		MenuBar menuBar = new MenuBar();		
 		MenuBar.MenuItem plsMenu = menuBar.addItem("PLS menu", null);
 		MenuBar.MenuItem carriers = plsMenu.addItem("Carriers", null);
-		carriers.addItem("Search carriers", null);
-		carriers.addItem("Create carrier", null);
+		carriers.addItem("Search carriers", 
+				new MenuCommand<CarriersViewShowEvent>(new CarriersViewShowEvent()));
+		carriers.addItem("Create carrier", 
+				new MenuCommand<CarriersViewShowEvent>(new CarriersViewShowEvent()));
 				
 		MenuBar.MenuItem customers = plsMenu.addItem("Customers", null);
-		customers.addItem("Search customers", null);
-		customers.addItem("Create customer", null);
+		customers.addItem("Search customers", 
+				new MenuCommand<CustomerViewShowEvent>(new CustomerViewShowEvent()));
+		customers.addItem("Create customer", 
+				new MenuCommand<CustomerViewShowEvent>(new CustomerViewShowEvent()));
 		
 		MenuBar.MenuItem loads = plsMenu.addItem("Loads", null);
 		loads.addItem("Search loads", null);
@@ -45,7 +51,6 @@ public class MainMenu extends CustomComponent {
 		return menuBar;
 	}
 	
-	@SuppressWarnings("unused")
 	private class MenuCommand<T> implements Command {
 		private static final long serialVersionUID = 1L;
 
