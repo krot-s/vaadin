@@ -10,12 +10,11 @@
   <name>vaadin</name>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
-    <guava.version>12.0.1</guava.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <guava.version>13.0</guava.version>    
     <vaadin.version>6.8.1</vaadin.version>
     <junit.version>4.8.1</junit.version>
-    <guice.version>3.0</guice.version>
-    <guice-servlet.version>3.0</guice-servlet.version>
+    <sisu-guice.version>3.1.2</sisu-guice.version>
   </properties>
   
   <build>
@@ -48,20 +47,31 @@
       <artifactId>vaadin</artifactId>
       <version>${vaadin.version}</version>
     </dependency>
+    
     <dependency>
     	<groupId>com.google.guava</groupId>
     	<artifactId>guava</artifactId>
     	<version>${guava.version}</version>
     </dependency>
-    <dependency>
-    	<groupId>com.google.inject</groupId>
-    	<artifactId>guice</artifactId>
-    	<version>${guice.version}</version>
+    
+     <!-- patched versions of guice (see https://github.com/sonatype/sisu-guice) -->
+     <dependency>
+    	<groupId>org.sonatype.sisu</groupId>
+    	<artifactId>sisu-guice</artifactId>
+    	<version>${sisu-guice.version}</version>
+    	
+    	<exclusions>
+    		<exclusion>
+    			<groupId>com.google.guava</groupId>
+    			<artifactId>guava</artifactId>
+    		</exclusion>
+    	</exclusions>
     </dependency>
-    <dependency>
-    	<groupId>com.google.inject.extensions</groupId>
+    
+     <dependency>
+    	<groupId>org.sonatype.sisu.inject</groupId>
     	<artifactId>guice-servlet</artifactId>
-    	<version>${guice-servlet.version}</version>
+    	<version>${sisu-guice.version}</version>
     </dependency>
   </dependencies>
 </project>

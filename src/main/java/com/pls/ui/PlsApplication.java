@@ -1,5 +1,7 @@
 package com.pls.ui;
 
+import javax.servlet.http.HttpSession;
+
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.pls.ui.carrier.CarrierView;
@@ -15,6 +17,9 @@ public class PlsApplication extends com.vaadin.Application{
 	@Inject
 	private EventBus eventBus;
 	
+	@Inject
+	private HttpSession session;
+	
 	/**
 	 * Next views are injected here in order to initialize them at the same time Application
 	 * is initialized. This is becase they register themselves in EventBus.
@@ -22,11 +27,9 @@ public class PlsApplication extends com.vaadin.Application{
 	 * nnecessary. 
 	 * Do not remove these injections, otherwise application will stop working  
 	 */
-	@SuppressWarnings("unused")
 	@Inject
 	private CarrierView carrierView;
 
-	@SuppressWarnings("unused")
 	@Inject
 	private CustomerView customerView;
 	
@@ -45,9 +48,15 @@ public class PlsApplication extends com.vaadin.Application{
 
 			@Override
 			public void windowClose(CloseEvent e) {
-				close();
+				closeApplication();
 			}
 		});
 		setLogoutURL("/");
+	}
+	
+	public void closeApplication(){
+		System.out.println("closingggg!!!!!!!!!!!!!!!!!");
+		session.invalidate();
+		close();
 	}
 }
