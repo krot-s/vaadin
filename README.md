@@ -12,9 +12,7 @@ Real application should also adopt MVP pattern and store UI layout in XML.
 
 The test configuration is located under src/main/resources/jmeter forlder.
 
-To run the application invoke: 
-mvn jetty:run
-and open url http://localhost:8080/vaadin/
+To run the application invoke: **mvn jetty:run** and open url **http://localhost:8080/vaadin/**
 
 If you don't want to run it, just see the screenshots:  
 
@@ -35,7 +33,7 @@ Test results
 -----
 So, there are two jmeter instances, each running 20 threads without deplay.  
 Total throughput: ~3000 operations/sec  
-Aggregated report - http://clip2net.com/s/2bxsP  
+See JMeter [Aggregated report](http://clip2net.com/s/2bxsP)  
 This is the report from one instance, second has same numbers.
 
 Server load:  
