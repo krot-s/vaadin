@@ -53,27 +53,16 @@ public class CustomerView implements Serializable {
 		beans.setBeanIdProperty("id");
 		beans.addAll(service.getAllCustomers());
 		
-		final Table table = new Table();		
-		table.setWidth("100%");
-		table.setDebugId("CustomerView.initLayout.table");
-		table.setColumnReorderingAllowed(true);
-		table.setEditable(true);
-		table.setSelectable(true);
-		table.setContainerDataSource(beans);
-		table.setTableFieldFactory(new CustomTableFieldFactory());
-
-		final Customer carrier = new Customer();
 		final Form form = new Form();
 		form.setCaption("Create new customer");
-		
-		final BeanItem<Customer> formDatasource = new BeanItem<Customer>(carrier);
-		form.setItemDataSource(formDatasource);
-		
+		setDataSource(form);
+				
 		Button addButton = new Button("Add");
 		addButton.addListener(new Button.ClickListener() {	
 			@Override
-			public void buttonClick(ClickEvent event) {
-//				service.addCustomer(carrier);
+			public void buttonClick(ClickEvent event) {						
+				service.addCustomer((Customer)form.getData());
+				setDataSource(form);
 				beans.addAll(service.getAllCustomers());				
 			}
 		});
@@ -82,11 +71,28 @@ public class CustomerView implements Serializable {
 		buttons.addComponent(addButton);
 		form.getFooter().addComponent(buttons);
 
-		layout.addComponent(table);
+		layout.addComponent(createTable(beans));
 		layout.addComponent(form);
 
 		application.getMainWindow().setContent(layout);
-		
-		
 	}
+	
+	private void setDataSource(Form form){
+		Customer customer = new Customer();
+		form.setData(customer);
+		form.setItemDataSource(new BeanItem<Customer>(customer));		
+	}
+	
+	private Table createTable(BeanContainer<Long, Customer> beans){
+		final Table table = new Table();		
+		table.setWidth("100%");
+		table.setDebugId("CarrierView.initLayout.table");
+		table.setColumnReorderingAllowed(true);
+		table.setEditable(true);
+		table.setSelectable(true);
+		table.setContainerDataSource(beans);
+		table.setTableFieldFactory(new CustomTableFieldFactory());
+		return table;
+	}
+
 }

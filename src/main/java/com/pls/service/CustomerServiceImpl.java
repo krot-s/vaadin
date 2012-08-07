@@ -42,4 +42,8 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setValidUntil(Calendar.getInstance().getTime());
 		return customer;
 	}
+	
+	public void addCustomer(Customer customer){
+		customers.add(customer);
+	}
 }
