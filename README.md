@@ -44,8 +44,7 @@ Java memory usage - between 1Gb and 2Gb
 CPU results (from top utility): 5.7/4.09/3.92  
 In average Java consumes 80% of CPU  
 
-Screenshots of jvisualvm metrics:
-http://krot.od.ua/visualvm.png
+See [screenshot of jvisualvm metrics](http://krot.od.ua/visualvm.png)
 
 Conclusion: Vaadin works quite well under heavy load. It do consumes memory, but its amount is quite moderate.  
 The sensitive resource is network - Vaadin posts a lot of internal data.  
