@@ -53,27 +53,16 @@ public class CarrierView implements Serializable {
 		beans.setBeanIdProperty("id");
 		beans.addAll(service.getAllCarriers());
 		
-		final Table table = new Table();		
-		table.setWidth("100%");
-		table.setDebugId("CarrierView.initLayout.table");
-		table.setColumnReorderingAllowed(true);
-		table.setEditable(true);
-		table.setSelectable(true);
-		table.setContainerDataSource(beans);
-		table.setTableFieldFactory(new CustomTableFieldFactory());
-
-		final Carrier carrier = new Carrier();
 		final Form form = new Form();
 		form.setCaption("Create new carrier");
-		
-		final BeanItem<Carrier> formDatasource = new BeanItem<Carrier>(carrier);
-		form.setItemDataSource(formDatasource);
-		
+		setDataSource(form);
+				
 		Button addButton = new Button("Add");
 		addButton.addListener(new Button.ClickListener() {	
 			@Override
-			public void buttonClick(ClickEvent event) {
-				service.addCarrier(carrier);
+			public void buttonClick(ClickEvent event) {						
+				service.addCarrier((Carrier)form.getData());
+				setDataSource(form);
 				beans.addAll(service.getAllCarriers());				
 			}
 		});
@@ -82,11 +71,28 @@ public class CarrierView implements Serializable {
 		buttons.addComponent(addButton);
 		form.getFooter().addComponent(buttons);
 
-		layout.addComponent(table);
+		layout.addComponent(createTable(beans));
 		layout.addComponent(form);
 
 		application.getMainWindow().setContent(layout);
-		
-		
 	}
+	
+	private void setDataSource(Form form){
+		Carrier carrier = new Carrier();
+		form.setData(carrier);
+		form.setItemDataSource(new BeanItem<Carrier>(carrier));		
+	}
+	
+	private Table createTable(BeanContainer<Long, Carrier> beans){
+		final Table table = new Table();		
+		table.setWidth("100%");
+		table.setDebugId("CarrierView.initLayout.table");
+		table.setColumnReorderingAllowed(true);
+		table.setEditable(true);
+		table.setSelectable(true);
+		table.setContainerDataSource(beans);
+		table.setTableFieldFactory(new CustomTableFieldFactory());
+		return table;
+	}
+
 }

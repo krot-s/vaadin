@@ -2,7 +2,7 @@ package com.pls.domain;
 
 import java.util.Date;
 
-public class Carrier {
+public class Carrier{
 	private Long id = 1l;
 	
 	private String name;
