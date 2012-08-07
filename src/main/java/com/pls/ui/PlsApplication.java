@@ -37,7 +37,6 @@ public class PlsApplication extends com.vaadin.Application{
 	public void init() {
 		initMainWindow();		
 		eventBus.post(new CarriersViewShowEvent());
-		System.out.println("New application created");
 	}
 	
 	private void initMainWindow(){
@@ -55,7 +54,6 @@ public class PlsApplication extends com.vaadin.Application{
 	}
 	
 	public void closeApplication(){
-		System.out.println("closingggg!!!!!!!!!!!!!!!!!");
 		session.invalidate();
 		close();
 	}

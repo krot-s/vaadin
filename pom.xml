@@ -1,77 +1,88 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.pls</groupId>
-  <artifactId>vaadin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+	<groupId>com.pls</groupId>
+	<artifactId>vaadin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 
-  <name>vaadin</name>
+	<name>vaadin</name>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <guava.version>13.0</guava.version>    
-    <vaadin.version>6.8.1</vaadin.version>
-    <junit.version>4.8.1</junit.version>
-    <sisu-guice.version>3.1.2</sisu-guice.version>
-  </properties>
-  
-  <build>
-  	<plugins>
-  		<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>      
-  	</plugins>
-  </build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<guava.version>13.0</guava.version>
+		<vaadin.version>6.8.1</vaadin.version>
+		<junit.version>4.8.1</junit.version>
+		<sisu-guice.version>3.1.2</sisu-guice.version>
+	</properties>
 
-  <dependencies>
-    <dependency>
-    	<groupId>javax.servlet</groupId>
-    	<artifactId>javax.servlet-api</artifactId>
-    	<version>3.0.1</version>
-    	<scope>provided</scope>
-    </dependency>
-    <dependency>
-    	<groupId>junit</groupId>
-    	<artifactId>junit</artifactId>
-    	<version>${junit.version}</version>
-    </dependency>
-	<dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin</artifactId>
-      <version>${vaadin.version}</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>com.google.guava</groupId>
-    	<artifactId>guava</artifactId>
-    	<version>${guava.version}</version>
-    </dependency>
-    
-     <!-- patched versions of guice (see https://github.com/sonatype/sisu-guice) -->
-     <dependency>
-    	<groupId>org.sonatype.sisu</groupId>
-    	<artifactId>sisu-guice</artifactId>
-    	<version>${sisu-guice.version}</version>
-    	
-    	<exclusions>
-    		<exclusion>
-    			<groupId>com.google.guava</groupId>
-    			<artifactId>guava</artifactId>
-    		</exclusion>
-    	</exclusions>
-    </dependency>
-    
-     <dependency>
-    	<groupId>org.sonatype.sisu.inject</groupId>
-    	<artifactId>guice-servlet</artifactId>
-    	<version>${sisu-guice.version}</version>
-    </dependency>
-  </dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.10</version>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<stopKey>foo</stopKey>
+					<stopPort>9999</stopPort>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+		<!-- patched versions of guice (see https://github.com/sonatype/sisu-guice) -->
+		<dependency>
+			<groupId>org.sonatype.sisu</groupId>
+			<artifactId>sisu-guice</artifactId>
+			<version>${sisu-guice.version}</version>
+
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sonatype.sisu.inject</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>${sisu-guice.version}</version>
+		</dependency>
+	</dependencies>
 </project>
