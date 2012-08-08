@@ -99,7 +99,7 @@
 		<dependency>
 			<groupId>com.vaadin.addon</groupId>
 			<artifactId>beanvalidation-addon</artifactId>
-			<version>${beanvalidation-addon.vesion}</version>
+			<version>${beanvalidation-addon.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
