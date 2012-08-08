@@ -37,3 +37,4 @@ public class CustomFormFieldFactory extends DefaultFieldFactory {
 		return super.createField(item, propertyId, uiContext);
 	}
 }
+

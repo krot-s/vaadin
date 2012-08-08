@@ -63,7 +63,7 @@ public class CustomerView implements Serializable {
 		form.setImmediate(false);
 		form.setCaption("Create new customer");
 		setDataSource(form);	
-		Button addButton = new Button("Add");
+		Button addButton = new Button("Create");
 		addButton.addListener(new Button.ClickListener() {	
 			@Override
 			public void buttonClick(ClickEvent event) {						
@@ -73,7 +73,8 @@ public class CustomerView implements Serializable {
     				setDataSource(form);
     				beans.addAll(service.getAllCustomers());		
                 } catch (InvalidValueException e) {
-                	MessageBox mb = new MessageBox(application.getMainWindow(), "Error", MessageBox.Icon.ERROR, e.getMessage().toString(),new MessageBox.ButtonConfig(ButtonType.OK, "Ok"));
+                	MessageBox mb = new MessageBox(application.getMainWindow(), "Error", MessageBox.Icon.ERROR, 
+                				"Please correct form errors and try again", new MessageBox.ButtonConfig(ButtonType.OK, "Ok"));
 					mb.show();
                 }				
 			}
@@ -103,6 +104,12 @@ public class CustomerView implements Serializable {
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
 		table.setTableFieldFactory(new CustomTableFieldFactory<Customer>(Customer.class));
+		table.setColumnHeader("contactName", "Contact Name");
+		table.setColumnHeader("id", "ID");
+		table.setColumnHeader("name", "Name");
+		table.setColumnHeader("status", "Status");
+		table.setColumnHeader("taxId", "Federal Tax ID");
+		table.setColumnHeader("validUntil", "Valid Until");
 		return table;
 	}
 
