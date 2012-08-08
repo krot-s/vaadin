@@ -105,7 +105,7 @@ public class CarrierView implements Serializable {
 		table.setEditable(true);
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
-		table.setTableFieldFactory(new CustomTableFieldFactory());
+		table.setTableFieldFactory(new CustomTableFieldFactory<Carrier>(Carrier.class));
 		return table;
 	}
 

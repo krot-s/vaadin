@@ -22,7 +22,7 @@ public class CustomFormFieldFactory extends DefaultFieldFactory {
 				select.addItem(cs);
 				select.setItemCaption(cs, cs.getHumanReadble());
 			}
-			select.setValue(propertyId);
+			select.setNullSelectionAllowed(false);
 			return select;
 		} else if (type.equals(CustomerStatus.class)) {
 			// dirty hack. remove after test!
@@ -31,7 +31,7 @@ public class CustomFormFieldFactory extends DefaultFieldFactory {
 				select.addItem(cs);
 				select.setItemCaption(cs, cs.getHumanReadble());
 			}
-			select.setValue(propertyId);
+			select.setNullSelectionAllowed(false);
 			return select;
 		}
 		return super.createField(item, propertyId, uiContext);

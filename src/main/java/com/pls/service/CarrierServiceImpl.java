@@ -38,7 +38,7 @@ public class CarrierServiceImpl implements CarrierService {
 		carrier.setId(id);
 		carrier.setContactName("Kolya Ananymous");
 		carrier.setName("Roga i Kopita");
-		carrier.setStatus(CarrierStatus.ACTIVE);
+		carrier.setStatus(CarrierStatus.INACTIVE);
 		carrier.setTaxId("0000-1111-2222");
 		carrier.setValidUntil(Calendar.getInstance().getTime());
 		carrier.setMcNumber(110011l);
