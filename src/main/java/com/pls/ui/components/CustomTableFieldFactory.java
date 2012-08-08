@@ -9,13 +9,13 @@ import com.pls.domain.Customer;
 import com.pls.domain.CustomerStatus;
 import com.pls.service.CarrierService;
 import com.pls.service.CustomerService;
+import com.vaadin.addon.beanvalidation.BeanValidationValidator;
 import com.vaadin.data.Container;
 import com.vaadin.data.Property;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.event.FieldEvents.FocusEvent;
 import com.vaadin.event.FieldEvents.FocusListener;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DefaultFieldFactory;
 import com.vaadin.ui.Field;
@@ -23,23 +23,28 @@ import com.vaadin.ui.Select;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 
-public class CustomTableFieldFactory extends DefaultFieldFactory {
+public class CustomTableFieldFactory<T> extends DefaultFieldFactory {
 	private static final long serialVersionUID = 1L;
 
 	// Map to find a field component by its item ID and property ID
 	private final HashMap<Object, HashMap<Object, Field>> fields = new HashMap<Object, HashMap<Object, Field>>();
+	
+	private final Class<T> clazz;
+
+	public CustomTableFieldFactory(Class<T> clazz) {
+		this.clazz = clazz;
+	}
 
 	private CustomerService customerService;
 	private CarrierService carrierService;
 	
 	
 	public CustomTableFieldFactory() {
-		super();
+		clazz = null;
 	}
 	
 	public CustomTableFieldFactory(CarrierService carrierService, CustomerService customerService) {
-		super();
-		
+		clazz = null;
 		this.carrierService = carrierService;
 		this.customerService = customerService;
 	}
@@ -58,6 +63,9 @@ public class CustomTableFieldFactory extends DefaultFieldFactory {
 
 		if (type.equals(String.class) || type.equals(Long.class) || type.equals(BigDecimal.class) || type.equals(Integer.class)) {
 			final TextField tf = new TextField();
+			if(clazz != null){
+				tf.addValidator(new BeanValidationValidator(clazz, propertyId.toString()));
+			}
 			tf.setImmediate(true);
 			// Manage the field in the field storage
 			HashMap<Object, Field> itemMap = fields.get(itemId);

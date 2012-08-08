@@ -6,7 +6,6 @@ import java.util.Vector;
 
 import com.pls.domain.Carrier;
 import com.pls.domain.CarrierStatus;
-
 public class CarrierServiceImpl implements CarrierService {
 	private final List<Carrier> carriers;
 	

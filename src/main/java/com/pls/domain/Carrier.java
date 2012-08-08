@@ -2,21 +2,33 @@ package com.pls.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Carrier{
+	@NotNull
 	private Long id = 1l;
 	
+	@NotNull
 	private String name;
 	
+	@NotNull
 	private CarrierStatus status;
 	
+	@NotNull
 	private String scac;
 	
+	@NotNull
 	private Long mcNumber;
 	
+	@NotNull
 	private Date validUntil;
 	
+	@NotNull
+    @Pattern(regexp="[0-9]{4}-[0-9]{4}-[0-9]{4}")
 	private String taxId;
 	
+	@NotNull
 	private String contactName;
 
 	public Long getId() {

@@ -60,7 +60,6 @@ public class LoadView implements Serializable {
 		
 		final BeanContainer<Long, Load> beans = new BeanContainer<Long, Load>(Load.class);
 		beans.setBeanIdProperty("id");
-		beans.addNestedContainerProperty("carrier.name");
 		beans.addAll(service.getAllLoads());
 		
 		final Form form = new Form();
@@ -103,6 +102,15 @@ public class LoadView implements Serializable {
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
 		table.setTableFieldFactory(new CustomTableFieldFactory(this.carrierService, this.customerService));
+		table.setColumnHeader("carrier", "Carrier");
+		table.setColumnHeader("carrierRate", "Carrier Rate");
+		table.setColumnHeader("customer", "Customer");
+		table.setColumnHeader("customerRate", "Customer Rate");
+		table.setColumnHeader("id", "ID");
+		table.setColumnHeader("piecies", "Piecies");
+		table.setColumnHeader("shipmentNumber", "Shipment Number");
+		table.setColumnHeader("weight", "Weight");
+		
 		return table;
 	}
 }

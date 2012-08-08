@@ -2,19 +2,29 @@ package com.pls.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Customer {
-	private Long id;
+	@NotNull
+	private Long id; 
 	
+	@NotNull
 	private String name;
 	
+	@NotNull
+	@Pattern(regexp="[0-9]{4}-[0-9]{4}-[0-9]{4}")
 	private String taxId;
 	
+	@NotNull
 	private String contactName;
 	
+	@NotNull
 	private Date validUntil;
-
+	
+	@NotNull
 	private CustomerStatus status;
-
+	
 	public Long getId() {
 		return id;
 	}
