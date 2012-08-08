@@ -62,4 +62,28 @@ public class Customer {
 	public void setValidUntil(Date validUntil) {
 		this.validUntil = validUntil;
 	}
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		if (object == null) {
+			return false;
+		}
+		
+		if (!(object instanceof Customer)) {
+			return false;
+		}
+		
+		Customer customer = (Customer) object;
+		return this.id.equals(customer.id);
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.id.hashCode();
+	}
 }

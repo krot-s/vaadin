@@ -4,6 +4,7 @@ import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.pls.ui.carrier.CarriersViewShowEvent;
 import com.pls.ui.customer.CustomerViewShowEvent;
+import com.pls.ui.load.LoadViewShowEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.MenuBar;
@@ -44,8 +45,10 @@ public class MainMenu extends CustomComponent {
 				new MenuCommand<CustomerViewShowEvent>(new CustomerViewShowEvent()));
 		
 		MenuBar.MenuItem loads = plsMenu.addItem("Loads", null);
-		loads.addItem("Search loads", null);
-		loads.addItem("Create load", null);
+		loads.addItem("Search loads", 
+				new MenuCommand<LoadViewShowEvent>(new LoadViewShowEvent()));
+		loads.addItem("Create load", 
+				new MenuCommand<LoadViewShowEvent>(new LoadViewShowEvent()));
 		
 		menuBar.setSizeUndefined();
 		return menuBar;

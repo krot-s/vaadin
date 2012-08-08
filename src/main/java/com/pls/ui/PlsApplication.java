@@ -5,6 +5,8 @@ import com.google.inject.Inject;
 import com.pls.ui.carrier.CarrierView;
 import com.pls.ui.carrier.CarriersViewShowEvent;
 import com.pls.ui.customer.CustomerView;
+import com.pls.ui.load.LoadView;
+import com.pls.ui.load.LoadViewShowEvent;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
 
@@ -29,6 +31,10 @@ public class PlsApplication extends com.vaadin.Application{
 	@SuppressWarnings("unused")
 	@Inject
 	private CustomerView customerView;
+	
+	@SuppressWarnings("unused")
+	@Inject
+	private LoadView loadView;
 	
 	@Override
 	public void init() {

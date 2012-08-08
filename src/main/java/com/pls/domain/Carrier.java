@@ -82,4 +82,29 @@ public class Carrier{
 	public void setContactName(String contactName) {
 		this.contactName = contactName;
 	}
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		if (object == null ) {
+			return false;
+		}
+		
+		if (!(object instanceof Carrier)) {
+			return false;
+		}
+		
+		Carrier carrier = (Carrier)object;
+
+		return this.id.equals(carrier.id);
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.id.hashCode();
+	}
 }
