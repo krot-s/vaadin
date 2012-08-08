@@ -35,15 +35,29 @@ Servlet container: Tomcat7
 No other specific VM options were set. Tomcat configuration is default.    
 
 JMeter instances run at two dedicated Windows7 32bit stations, Core i5-2300 2.80 GHz.
-Each instance runs 20 threads executing tests without delays.
 Connection between instances and server is wired ethernet.
 
 Test results
 -----
-So, there are two jmeter instances, each running 20 threads without deplay.  
+Two tests were made.
+
+**First test*
+Two jmeter instances, each running 20 threads without deplay.  
 Total throughput: ~3000 operations/sec  
-See JMeter [Aggregated report](http://clip2net.com/s/2bxsP)  
-This is the report from one instance, second has same numbers.
+Aggregate report from one instance, second has same numbers.  
+![Aggregated report](http://clip2net.com/s/2bxsP)  
+
+**Second test**
+Two jmeter instances. Each instance starts gradually creating threads until 500 threads are created. 
+As a result there were 1000 threads running simultaneously.
+
+Aggregate report:
+![Aggregated report]([http://clip2net.com/s/2bH0I)
+
+![Response time vs Threads](http://clip2net.com/s/2bHe4)
+
+![Transactions Throughput vs Threads](http://clip2net.com/s/2bHeK)
+ 
 
 Server load:  
 Network - 22MBit/s inbound, 158MBit/s outbound  
