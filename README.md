@@ -18,6 +18,7 @@ If you don't want to run it, just see the screenshots:
 [screen1](http://clip2net.com/s/2bEUF)
 [screen2](http://clip2net.com/s/2bEVs)
 [screen3](http://clip2net.com/s/2bEW8)
+[screen3](http://clip2net.com/s/2bHGC)
 
 Code quality note
 ------
