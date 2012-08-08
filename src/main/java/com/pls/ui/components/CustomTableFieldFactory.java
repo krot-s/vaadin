@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.pls.domain.CarrierStatus;
 import com.pls.domain.CustomerStatus;
+import com.vaadin.addon.beanvalidation.BeanValidationValidator;
 import com.vaadin.data.Container;
 import com.vaadin.data.Property;
 import com.vaadin.event.FieldEvents.BlurEvent;
@@ -17,11 +18,17 @@ import com.vaadin.ui.Select;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 
-public class CustomTableFieldFactory extends DefaultFieldFactory {
+public class CustomTableFieldFactory<T> extends DefaultFieldFactory {
 	private static final long serialVersionUID = 1L;
 
 	// Map to find a field component by its item ID and property ID
 	private final HashMap<Object, HashMap<Object, Field>> fields = new HashMap<Object, HashMap<Object, Field>>();
+
+	private final Class<T> clazz;
+
+	public CustomTableFieldFactory(Class<T> clazz) {
+		this.clazz = clazz;
+	}
 
 	@SuppressWarnings("serial")
 	@Override
@@ -34,9 +41,10 @@ public class CustomTableFieldFactory extends DefaultFieldFactory {
 		Property containerProperty = container.getContainerProperty(itemId,
 				propertyId);
 		Class<?> type = containerProperty.getType();
-
 		if (type.equals(String.class) || type.equals(Long.class)) {
 			final TextField tf = new TextField();
+			tf.addValidator(new BeanValidationValidator(clazz, propertyId
+					.toString()));
 			tf.setImmediate(true);
 			// Manage the field in the field storage
 			HashMap<Object, Field> itemMap = fields.get(itemId);
@@ -78,19 +86,20 @@ public class CustomTableFieldFactory extends DefaultFieldFactory {
 				select.addItem(cs);
 				select.setItemCaption(cs, cs.getHumanReadble());
 			}
-			select.setValue(propertyId);
+			select.setNullSelectionAllowed(false);
 			return select;
-		} else if (type.equals(CustomerStatus.class)) {
+		}
+		else if (type.equals(CustomerStatus.class)) {
 			// dirty hack. remove after test!
 			Select select = new Select();
 			for (CustomerStatus cs : CustomerStatus.values()) {
 				select.addItem(cs);
 				select.setItemCaption(cs, cs.getHumanReadble());
 			}
-			select.setValue(propertyId);
+			select.setNullSelectionAllowed(false);
+			
 			return select;
 		}
-
 		return super.createField(container, itemId, propertyId, uiContext);
 	}
 }

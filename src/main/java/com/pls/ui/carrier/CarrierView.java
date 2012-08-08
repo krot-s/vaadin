@@ -106,7 +106,7 @@ public class CarrierView implements Serializable {
 		table.setEditable(true);
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
-		table.setTableFieldFactory(new CustomTableFieldFactory());
+		table.setTableFieldFactory(new CustomTableFieldFactory<Carrier>(Carrier.class));
 		table.setColumnHeader("contactName", "Contact Name");
 		table.setColumnHeader("id", "ID");
 		table.setColumnHeader("mcNumber", "MC Number");

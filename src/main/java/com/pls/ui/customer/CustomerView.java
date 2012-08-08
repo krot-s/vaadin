@@ -94,8 +94,7 @@ public class CustomerView implements Serializable {
 		form.setData(customer);
 		form.setFormFieldFactory(new CustomFormFieldFactory());
 		form.setItemDataSource(new BeanItem<Customer>(customer));		
-	}
-	
+	}	
 	private Table createTable(BeanContainer<Long, Customer> beans){
 		final Table table = new Table();		
 		table.setWidth("100%");
@@ -104,7 +103,7 @@ public class CustomerView implements Serializable {
 		table.setEditable(true);
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
-		table.setTableFieldFactory(new CustomTableFieldFactory());
+		table.setTableFieldFactory(new CustomTableFieldFactory<Customer>(Customer.class));
 		table.setColumnHeader("contactName", "Contact Name");
 		table.setColumnHeader("id", "ID");
 		table.setColumnHeader("name", "Name");
