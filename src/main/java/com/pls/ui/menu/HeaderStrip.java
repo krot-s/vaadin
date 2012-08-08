@@ -1,7 +1,7 @@
 package com.pls.ui.menu;
 
 import com.google.inject.Inject;
-import com.vaadin.Application;
+import com.pls.ui.PlsApplication;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
@@ -11,7 +11,7 @@ public class HeaderStrip extends CustomComponent {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private Application application;
+	private PlsApplication application;	
 
 	@Inject
 	public HeaderStrip(MainMenu mainMenu) {
@@ -33,7 +33,7 @@ public class HeaderStrip extends CustomComponent {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				application.close();	
+				application.closeApplication();
 			}
 		}));
 		
