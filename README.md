@@ -52,7 +52,7 @@ Two jmeter instances. Each instance starts gradually creating threads until 500 
 As a result there were 1000 threads running simultaneously.
 
 Aggregate report:  
-[Aggregated report]([http://clip2net.com/s/2bH0I)  
+[Aggregated report](http://clip2net.com/s/2bH0I)  
 [Response time vs Threads](http://clip2net.com/s/2bHe4)  
 [Transactions Throughput vs Threads](http://clip2net.com/s/2bHeK) 
 
