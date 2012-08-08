@@ -22,7 +22,7 @@ If you don't want to run it, just see the screenshots:
 Code quality note
 ------
 This application is full of antipatterns and dirty hacks. The purpose 
-was not to create perfect application, but to see how to see how it performs and get familiar with Vaadin. 
+was not to create a perfect application, but to see how it performs and get familiar with Vaadin. 
  
 
 
@@ -54,7 +54,8 @@ In average Java consumes 80% of CPU
 See [screenshot of jvisualvm metrics](http://krot.od.ua/visualvm.png)
 
 Conclusion: Vaadin works quite well under heavy load. It do consumes memory, but its amount is quite moderate.  
-The sensitive resource is network - Vaadin posts a lot of internal data. Moreover - network usage can be reduced by times using gzip compression.
+The sensitive resource is network - Vaadin posts a lot of internal data.   
+Network usage can be reduced by times using gzip compression.  
 Some Tomcat tuning could also increase number of simultaneous users.   
 
 Memory leaks: no leaks. The test were running for hours, as soon as tests were stopped and all session expired, memory usage fell down to standard 20MB.
