@@ -64,7 +64,7 @@ public class CarrierView implements Serializable {
 		
 		form.setCaption("Create new carrier");
 		setDataSource(form);
-		Button addButton = new Button("Add");
+		Button addButton = new Button("Create");
 		addButton.addListener(new Button.ClickListener() {	
 			@Override
 			public void buttonClick(ClickEvent event) {	
@@ -74,7 +74,8 @@ public class CarrierView implements Serializable {
     				setDataSource(form);
     				beans.addAll(service.getAllCarriers());		
                 } catch (InvalidValueException e) {
-                	MessageBox mb = new MessageBox(application.getMainWindow(), "Error", MessageBox.Icon.ERROR, e.getMessage().toString(),new MessageBox.ButtonConfig(ButtonType.OK, "Ok"));
+                	MessageBox mb = new MessageBox(application.getMainWindow(), "Error", MessageBox.Icon.ERROR, 
+                			"Please correct form errors and try again", new MessageBox.ButtonConfig(ButtonType.OK, "Ok"));
 					mb.show();
                 }		
 			}
@@ -106,6 +107,14 @@ public class CarrierView implements Serializable {
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
 		table.setTableFieldFactory(new CustomTableFieldFactory());
+		table.setColumnHeader("contactName", "Contact Name");
+		table.setColumnHeader("id", "ID");
+		table.setColumnHeader("mcNumber", "MC Number");
+		table.setColumnHeader("name", "Name");
+		table.setColumnHeader("scac", "SCAC");
+		table.setColumnHeader("status", "Status");
+		table.setColumnHeader("taxId", "Federal Tax ID");
+		table.setColumnHeader("validUntil", "Valid Until");
 		return table;
 	}
 
