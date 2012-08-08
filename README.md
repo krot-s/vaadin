@@ -41,22 +41,22 @@ Test results
 -----
 Two tests were made.
 
-**First test*
+**First test**  
 Two jmeter instances, each running 20 threads without deplay.  
 Total throughput: ~3000 operations/sec  
 Aggregate report from one instance, second has same numbers.  
-![Aggregated report](http://clip2net.com/s/2bxsP)  
+![Aggregated report](http://clip2net.com/s/2bxsP "Aggregated report")  
 
-**Second test**
+**Second test**  
 Two jmeter instances. Each instance starts gradually creating threads until 500 threads are created. 
 As a result there were 1000 threads running simultaneously.
 
 Aggregate report:
-![Aggregated report]([http://clip2net.com/s/2bH0I)
+![Aggregated report]([http://clip2net.com/s/2bH0I "Aggregated report")
 
-![Response time vs Threads](http://clip2net.com/s/2bHe4)
+![Response time vs Threads](http://clip2net.com/s/2bHe4 "Response time vs Threads")
 
-![Transactions Throughput vs Threads](http://clip2net.com/s/2bHeK)
+![Transactions Throughput vs Threads](http://clip2net.com/s/2bHeK "Transactions Throughput vs Threads")
  
 
 Server load:  
