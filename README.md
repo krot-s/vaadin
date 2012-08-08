@@ -76,4 +76,6 @@ JMeter caveats
 If you run jmeter tests, don't forget to increase OS connection sockets count. For Win7 invoke:
 netsh int ipv4 set dynamicport tcp start=10000 num=40000  
 
+JMeter plugins (http://code.google.com/p/jmeter-plugins/) are used in test scenario.
+
 
