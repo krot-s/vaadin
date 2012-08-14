@@ -27,6 +27,7 @@
 		<hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
 		<beanvalidation-addon.version>1.0.0</beanvalidation-addon.version>
 		<messagebox-addon.version>1.1.1</messagebox-addon.version>
+		<tableexport-addon.version>1.3.0</tableexport-addon.version>
 	</properties>
 
 	<build>
@@ -111,5 +112,23 @@
 			<artifactId>messagebox</artifactId>
 			<version>${messagebox-addon.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>tableexport</artifactId>
+			<version>${tableexport-addon.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.8</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+
 	</dependencies>
 </project>

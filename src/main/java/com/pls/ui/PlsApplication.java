@@ -8,6 +8,7 @@ import com.pls.ui.carrier.CarrierView;
 import com.pls.ui.carrier.CarriersViewShowEvent;
 import com.pls.ui.customer.CustomerView;
 import com.pls.ui.load.LoadView;
+import com.pls.ui.user.UserView;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
 
@@ -36,6 +37,10 @@ public class PlsApplication extends com.vaadin.Application{
 	
 	@Inject
 	private LoadView loadView;
+	
+	@Inject
+	private UserView userView;
+	
 	
 	@Override
 	public void init() {
