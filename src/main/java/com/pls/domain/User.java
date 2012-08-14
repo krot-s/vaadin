@@ -89,7 +89,7 @@ public class User implements Serializable {
  /**
   * Dummy. 
   */
- private Long userId;
+ private Long id;
 
  /**
   * @return the firstName
@@ -229,15 +229,15 @@ public class User implements Serializable {
  /**
   * @return the personId
   */
- public Long getUserId() {
-  return userId;
+ public Long getId() {
+  return id;
  }
 
  /**
   * @param personId
   *            the personId to set
   */
- public void setUserId(Long userId) {
-  this.userId = userId;
+ public void setId(Long Id) {
+  this.id = Id;
  }
 }

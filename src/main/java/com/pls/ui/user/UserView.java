@@ -58,13 +58,13 @@ public class UserView {
 
 		final BeanContainer<Long, User> beans = new BeanContainer<Long, User>(
 				User.class);
-		beans.setBeanIdProperty("userId");
+		beans.setBeanIdProperty("id");
 		beans.addAll(service.getAllUsers());
 
 		final BeanValidationForm<User> form = new BeanValidationForm<User>(
 				User.class);
 		form.setImmediate(false);
-		form.setCaption("Create new user");
+		form.setCaption("Create new User");
 		setDataSource(form);
 		Button addButton = new Button("Create");
 		addButton.addListener(new Button.ClickListener() {
@@ -143,6 +143,16 @@ public class UserView {
 		table.setSelectable(true);
 		table.setContainerDataSource(beans);
 		table.setTableFieldFactory(new CustomTableFieldFactory<User>(User.class));
+		table.setColumnHeader("createdBy", "Created By");
+		table.setColumnHeader("dateCreated", "Date Created");
+		table.setColumnHeader("dateModified", "Date Modified");
+		table.setColumnHeader("emailAddress", "Email Address");
+		table.setColumnHeader("firstName", "First Name");
+		table.setColumnHeader("lastName", "Last Name");
+		table.setColumnHeader("modifiedBy", "Modified By");
+		table.setColumnHeader("password", "Password");
+		table.setColumnHeader("status", "Status");
+		table.setColumnHeader("id", "User Id");
 		return table;
 	}
 

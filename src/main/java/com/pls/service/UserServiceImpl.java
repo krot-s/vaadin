@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getById(User id) {
 		for (User user : users) {
-			if (user.getUserId().equals(id)) {
+			if (user.getId().equals(id)) {
 				return user;
 			}
 		}
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 	private static User createUser(Long id) {
 		User user = new User();
-		user.setUserId(id);
+		user.setId(id);
 		user.setCreatedBy((long)0);
 		user.setDateCreated(new Date());
 		user.setDateModified(new Date());
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 		List<User> searchusers = new Vector<User>();
 		
 		for(User user :users){
-			if(user.getUserId()==Long.valueOf(str)){
+			if(user.getId()==Long.valueOf(str)){
 				searchusers.add(user);
 			}
 		}
